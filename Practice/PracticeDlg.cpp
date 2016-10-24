@@ -939,5 +939,6 @@ bool CPracticeDlg::DFS_FindWord(char **board, bool **visit, int row_size, int co
 	if (DFS_FindWord(board, visit, row_size, col_size, word, row + 1, col - 1, word_index + 1, word_size)){ return true; }*/
 
 	visit[row][col] = false;
+
 	return false;
 }
