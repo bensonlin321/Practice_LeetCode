@@ -16,6 +16,8 @@ public:
 	~TreeNode(){
 	};
 };*/
+
+//Implement Stack using Queues
 class Queue{
 private:
 	std::stack<int> input, output;
@@ -134,6 +136,7 @@ public:
 	int **PascalTriangle(int level);
 	int TrailingZeroes(int n);
 	char* BullandCows(char *secret, char*guess);
+	int* merge_two_int_array(int* num1, int num1_len, int* num2, int num2_len);
 	//medium
 	double Mysqrt(int num);
 	bool exist(char **board, int row_size, int col_size, char *word);

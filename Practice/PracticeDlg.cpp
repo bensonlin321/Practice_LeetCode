@@ -331,7 +331,11 @@ void CPracticeDlg::OnBnClickedButton1() //Testing button
 	table[1] = "ADEE";
 	bool x = exist(table, 2, 4, "SEE");*/
 
-	char *result = BullandCows("1492", "1489");
+	//char *result = BullandCows("1492", "1489");
+	
+	/*int A[] = { 1, 5, 2, 7, 8 };
+	int B[] = { 2, 3 };
+	int * Result = merge_two_int_array(A, 5, B, 2);*/
 }
 //----------------------------------------------------------Linklist------------------------------------------------------
 //-------------------------------ReverseLinkedList---------------------------------
@@ -648,7 +652,7 @@ int* CPracticeDlg::intersection(int *num1, int size1, int *num2, int size2)
 	int *Temp = new int[max(size1, size2)];
 	int i = 0, j = 0, samecount = 0;
 	int XORsum = 0;
-	while (i<size1 && j< size2)
+	while (i < size1 && j < size2)
 	{
 		if (num1[i] == num2[j])
 		{
@@ -953,4 +957,29 @@ char* CPracticeDlg::BullandCows(char *secret, char*guess)
 	}
 	sprintf(Output, "%dA%dB \r\n", Anum, Bnum);
 	return Output;
+}
+
+//Merge Sorted Array
+int* CPracticeDlg::merge_two_int_array(int* num1, int num1_len, int* num2, int num2_len)
+{
+	int *temp = new int[num1_len + num2_len];
+	int i = 0, j = 0, k = 0;
+	qsort(num1, num1_len, sizeof(int), comparefunc);
+	qsort(num2, num2_len, sizeof(int), comparefunc);
+	while (k < (num1_len + num2_len))
+	{
+		if (num1[i] <= num2[j] || j >= num2_len)
+		{
+			temp[k] = num1[i];
+			k++;
+			i++;
+		}
+		else if (num1[i] > num2[j] || i >= num1_len)
+		{
+			temp[k] = num2[j];
+			k++;
+			j++;
+		}
+	}
+	return temp;
 }
