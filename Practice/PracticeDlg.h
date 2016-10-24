@@ -133,7 +133,7 @@ public:
 	int *RotateIntArray(int *num, int numsize, int rotateindex);
 	int **PascalTriangle(int level);
 	int TrailingZeroes(int n);
-
+	char* BullandCows(char *secret, char*guess);
 	//medium
 	double Mysqrt(int num);
 	bool exist(char **board, int row_size, int col_size, char *word);

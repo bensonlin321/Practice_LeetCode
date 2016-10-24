@@ -321,26 +321,17 @@ void CPracticeDlg::OnBnClickedButton1() //Testing button
 
 	//double x = Mysqrt(9);
 
+	/*
 	char **table = new char*[2];
 	for (int i = 0; i < 2; i++)
 	{
 		table[i] = new char[4];
 	}
-	/*table[0][0] = 'S';
-	table[0][1] = 'B';
-	table[0][2] = 'K';
-	table[0][3] = 'C';
-	table[1][0] = 'G';
-	table[1][1] = 'G';
-	table[1][2] = 'E';
-	table[1][3] = 'E';*/
 	table[0] = "SFCS";
 	table[1] = "ADEE";
+	bool x = exist(table, 2, 4, "SEE");*/
 
-
-	bool x = exist(table, 2, 4, "SEE");
-
-
+	char *result = BullandCows("1492", "1489");
 }
 //----------------------------------------------------------Linklist------------------------------------------------------
 //-------------------------------ReverseLinkedList---------------------------------
@@ -937,10 +928,29 @@ bool CPracticeDlg::DFS_FindWord(char **board, bool **visit, int row_size, int co
 	if (DFS_FindWord(board, visit, row_size, col_size, word, row - 1, col - 1, word_index + 1, word_size)){ return true; }
 	if (DFS_FindWord(board, visit, row_size, col_size, word, row - 1, col + 1, word_index + 1, word_size)){ return true; }
 	if (DFS_FindWord(board, visit, row_size, col_size, word, row + 1, col - 1, word_index + 1, word_size)){ return true; }*/
-
-
-
 	visit[row][col] = false;
-
 	return false;
+}
+
+char* CPracticeDlg::BullandCows(char *secret, char*guess)
+{
+	int  Anum = 0, Bnum = 0;
+	char Output[32] = { 0 };
+	char hashtable[10] = { 0 };
+	int seretcLen = strlen(secret);
+	int guessLen = strlen(guess);
+	if (seretcLen != guessLen){ return "0"; }
+	// && '0' <= (guess[i] - '0') && (guess[i] - '0') <= '9'
+	for (int i = 0; i < seretcLen; i++)
+	{
+		hashtable[secret[i] - '0']++;
+		if (secret[i] == guess[i]){ Anum++; hashtable[secret[i] - '0']--; }
+	}
+
+	for (int i = 0; i < guessLen; i++)
+	{
+		if (hashtable[guess[i] - '0']){ Bnum++; hashtable[guess[i] - '0']--; }
+	}
+	sprintf(Output, "%dA%dB \r\n", Anum, Bnum);
+	return Output;
 }
