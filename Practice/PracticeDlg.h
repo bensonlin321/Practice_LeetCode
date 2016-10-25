@@ -141,6 +141,10 @@ public:
 	double Mysqrt(int num);
 	bool exist(char **board, int row_size, int col_size, char *word);
 	bool DFS_FindWord(char **board, bool **visit, int row_size, int col_size, char *word, int row, int col, int word_index, int word_size);
+	void Myquicksort(int *data, int left, int right);
+	void Mybubblesort(int *data, int len); //¼g¹L¤F
+	void MySelectionSort(int *data, int len, int *output);
+
 protected:
 	HICON m_hIcon;
 

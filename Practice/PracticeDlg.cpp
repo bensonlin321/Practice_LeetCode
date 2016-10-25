@@ -336,6 +336,11 @@ void CPracticeDlg::OnBnClickedButton1() //Testing button
 	/*int A[] = { 1, 5, 2, 7, 8 };
 	int B[] = { 2, 3 };
 	int * Result = merge_two_int_array(A, 5, B, 2);*/
+
+	int *Out = new int[5];
+	int A[] = { 1, 5, 2, 7, 8 };
+	MySelectionSort(A, 5, Out);
+
 }
 //----------------------------------------------------------Linklist------------------------------------------------------
 //-------------------------------ReverseLinkedList---------------------------------
@@ -982,4 +987,72 @@ int* CPracticeDlg::merge_two_int_array(int* num1, int num1_len, int* num2, int n
 		}
 	}
 	return temp;
+}
+void  CPracticeDlg::Myquicksort(int *data, int left, int right)
+{
+	int pivot = 0, i = 0, j = 0;
+	if (left >= right){ return; }
+	pivot = data[left];
+	i = left + 1;
+	j = right;
+	while (true)
+	{
+		while (i <= right)
+		{
+			if (data[i] > pivot){ break; } // т程
+			i++;
+		}
+		while (j > left)
+		{
+			if (data[j] < pivot){ break; } // т程
+			j--;
+		}
+		if (i > j){ break; } //pivot  pivotオ 碞break
+		swap(&data[i], &data[j]);
+	}
+	swap(&data[left], &data[j]); //蛤程传竚
+	Myquicksort(data, left, j - 1);
+	Myquicksort(data, j + 1, right);
+}
+
+void CPracticeDlg::Mybubblesort(int *data, int len)
+{
+	int temp = 0;
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - i - 1; j++)
+		{
+			if (data[j] > data[j+1])
+			{
+				temp = data[j];
+				data[j] = data[j+1];
+				data[j+1] = temp;
+			}
+		}
+	}
+}
+void CPracticeDlg::MySelectionSort(int *data, int len, int *output)
+{
+	int max = INT_MAX, index = 0;
+	//int *output = new int[len];
+	bool *visit = new bool[len];
+	for (int g = 0; g < len; g++)
+	{
+		visit[g] = false;
+	}
+
+	for (int j = 0; j < len; j++)
+	{
+		for (int i = 0; i < len; i++)
+		{
+			if (data[i] < max && !visit[i])
+			{
+				max = data[i];
+				index = i;
+			}
+		}
+		output[j] = max;
+		visit[index] = true;
+		max = INT_MAX;
+	}
 }
